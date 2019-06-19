@@ -144,6 +144,7 @@ def drawOneLottery(index):
         plt.plot(data24, data24ping, 'black', label='Ping')
         plt.plot(data24, data24fu, 'orange', label=lotteryMatches[index]['futitle'])
         plt.legend(loc='upper left', prop=myfont, framealpha=0.5)
+        plt.grid(True, axis='y', linestyle='dashdot', linewidth=0.3)
 
 
 if __name__ == '__main__':
