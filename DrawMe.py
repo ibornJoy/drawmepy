@@ -155,7 +155,7 @@ if __name__ == '__main__':
         for item in mycol.find():
             lotteryMatches.append(item)
     lotterysize = len(lotteryMatches)
-    fig = plt.figure(figsize=(11,4))
+    fig = plt.figure('football match',figsize=(11,4))
     fig.canvas.mpl_connect('button_press_event', onclick)
     drawOneLottery(0)
     #plt.show() create canvas and cause too many memory cause
