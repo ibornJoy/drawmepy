@@ -111,13 +111,15 @@ def load24Data():
 
 def onclick(event):
     global lotteryindex
-    if event.button != 1 and event.button != 3:
+    #ugly to fit 3 == forward 2 == backward
+    #toolbar so hard to find the way get the event ???
+    if event.button != 3 and event.button != 2:
         return False
-    if event.button == 1:
+    if event.button == 3:
         lotteryindex = lotteryindex+1
         if lotteryindex == lotterysize :
             lotteryindex = 0
-    if event.button == 3:
+    if event.button == 2:
         lotteryindex = lotteryindex -1
         if lotteryindex < 0:
             lotteryindex = lotterysize -1
