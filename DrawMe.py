@@ -73,6 +73,7 @@ def load24Data():
             link24.click()
 
             browser.switch_to.window(browser.window_handles[-1])
+            time.sleep(5)
             doc24 = pq(browser.page_source)
             items24 = doc24('body > div.wrap > table > tbody  .sjbg01').items()
             ratio24time = []
@@ -96,12 +97,11 @@ def load24Data():
             lotterymatch['ratio24ping'].reverse()
             lotterymatch['ratio24fu'] = ratio24fu.copy()
             lotterymatch['ratio24fu'].reverse()
-
             # print(lotterymatch['matchid']+' '+lotterymatch['zhutitle']+' VS '+lotterymatch['futitle'])
             lotteryMatches.append(lotterymatch)
             browser.close()
             browser.switch_to.window(browser.window_handles[0])
-            # time.sleep(5)
+          
     except ValueError as e:
         # the error can not find so just add to find the question
         print(e + ' ' + handerr)
