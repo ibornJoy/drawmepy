@@ -51,6 +51,10 @@ def drawonelottery(index):
         plt.plot(data24, data24ping, 'black', label='Ping')
         plt.plot(data24, data24fu, 'orange', label=lotterymatches[index]['futitle'])
         plt.legend(loc='upper left', prop=myfont, framealpha=0.5)
+        #ugly to do it
+        bottom,top = plt.ylim()
+        maxtemp = max(abs(math.floor(bottom)),math.ceil(top))
+        plt.ylim(-maxtemp,maxtemp)
         plt.grid(True, axis='y', linestyle='dashdot', linewidth=0.3)
 
 
