@@ -67,10 +67,10 @@ def load24Data():
             }
             # print(lotterymatch)
             matchhref = url + item.find('div.fengxin1.textnowrap > a:nth-child(1)').attr('href')
-            if matchhref.find('javascript:') :
+            if matchhref.find('javascript:') ！= -1 :
                 matchhref = matchhref.replace('javascript:warnMsg(\'','').replace('\');','').strip()
                 temp = lotterymatch['zhutitle']
-                lotterymatch['zhutitile'] = lotterymatch['futitle']
+                lotterymatch['zhutitle'] = lotterymatch['futitle']
                 lotterymatch['futitle'] = temp
             lotterymatch['matchhref'] = matchhref
             browser.get(matchhref)
