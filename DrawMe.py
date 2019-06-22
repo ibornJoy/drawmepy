@@ -63,11 +63,17 @@ def load24Data():
                 'matchid': item.attr('id'),
                 'data_ordercn': item.attr('data-ordercn'),
                 'zhutitle': item.find('.zhu .zhum.fff.hui_colo').attr('title'),
-                'futitle': item.find('.fu  .zhum.fff.hui_colo').attr('title'),
-                'matchhref': url + item.find('div.fengxin1.textnowrap > a:nth-child(1)').attr('href')
+                'futitle': item.find('.fu  .zhum.fff.hui_colo').attr('title')
             }
             # print(lotterymatch)
-            browser.get(lotterymatch['matchhref'])
+            matchhref = url + item.find('div.fengxin1.textnowrap > a:nth-child(1)').attr('href')
+            if matchhref.find('javascript:') :
+                matchhref = matchhref.replace('javascript:warnMsg(\'','').replace('\');','').strip()
+                temp = lotterymatch['zhutitle']
+                lotterymatch['zhutitile'] = lotterymatch['futitle']
+                lotterymatch['futitle'] = temp
+            lotterymatch['matchhref'] = matchhref
+            browser.get(matchhref)
             wait2 = WebDriverWait(browser, 10)
             link24 = wait2.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '[id=tr24]  a>span')))
             link24.click()
