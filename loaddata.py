@@ -105,6 +105,8 @@ if __name__ == '__main__':
             browser.close()
             browser.switch_to.window(browser.window_handles[0])
         save_to_mongo(lotterymatches)
+    except Exception as err:
+        print("Error:"+str(err))
     finally:
         browser.quit()
         myclient.close()
