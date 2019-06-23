@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run "cmd /c python DrawMepy.py",0
