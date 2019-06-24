@@ -61,11 +61,9 @@ if __name__ == '__main__':
                 'futitle': item.find('.fu  .zhum.fff.hui_colo').attr('title')
             }
             matchhref = url + item.find('div.fengxin1.textnowrap > a:nth-child(1)').attr('href')
-            if matchhref.find('java') != -1:
+            if 'javascript' in matchhref:
                 matchhref = matchhref.replace('javascript:warnMsg(\'', '').replace('\');', '').strip()
-                temp = lotterymatch['zhutitle']
-                lotterymatch['zhutitle'] = lotterymatch['futitle']
-                lotterymatch['futitle'] = temp
+                lotterymatch['zhutitle'], lotterymatch['futitle'] = lotterymatch['futitle'],lotterymatch['zhutitle']
             lotterymatch['matchhref'] = matchhref
             browser.get(matchhref)
             print(browser.title)
@@ -75,7 +73,7 @@ if __name__ == '__main__':
 
             browser.switch_to.window(browser.window_handles[-1])
             print(browser.title)
-            wait = WebDriverWait(browser, 300)
+            wait = WebDriverWait(browser, 600)
             wait.until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, 'table')))
 
