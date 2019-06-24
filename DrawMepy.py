@@ -6,6 +6,8 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import pymongo
+import math
+
 
 lotterymatches = []
 lotterysize = 0
