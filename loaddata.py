@@ -94,10 +94,10 @@ if __name__ == '__main__':
                 ratio24ping.append(
                     float(repstrstr(item.find('td:nth-child(4)').text())))
                 ratio24fu.append(float(repstrstr(item.find('td:nth-child(5)').text())))
-            lotterymatch['ratio24time'] = ratio24time【：：-1】
-            lotterymatch['ratio24zhu'] = ratio24zhu【：：-1】
-            lotterymatch['ratio24ping'] = ratio24ping【：：-1】
-            lotterymatch['ratio24fu'] = ratio24fu【：：-1】
+            lotterymatch['ratio24time'] = ratio24time[::-1]
+            lotterymatch['ratio24zhu'] = ratio24zhu[::-1]
+            lotterymatch['ratio24ping'] = ratio24ping[::-1]
+            lotterymatch['ratio24fu'] = ratio24fu[::-1]
             lotterymatches.append(lotterymatch)
             browser.close()
             browser.switch_to.window(browser.window_handles[0])
