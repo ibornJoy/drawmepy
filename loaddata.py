@@ -82,10 +82,7 @@ if __name__ == '__main__':
 
             doc24 = pq(browser.page_source)
             items24 = doc24('body > div.wrap > table > tbody  .sjbg01').items()
-            ratio24time = []
-            ratio24zhu = []
-            ratio24fu = []
-            ratio24ping = []
+            ratio24time,ratio24zhu,ratio24fu,ratio24ping = list(),list(),list(),list()
             for item in items24:
                 date24 = item.find('td:nth-child(1)').text().replace('(初)', '')
                 ratio24time.append(datetime.datetime.strptime(date24, '%Y/%m/%d %H:%M'))
