@@ -54,6 +54,9 @@ if __name__ == '__main__':
         # 返回一个生成器, 使用for循环就可以打印出来。循环的每一个节点还是PyQuery类型可以继续CSS选择器选择
         items = doc('#content > div:nth-child(6) > div.touzhu .touzhu_1').items()
         for item in items:
+            matchid = item.attr('id')
+            if matchid == 'match_0':
+                continue
             lotterymatch = {
                 'matchid': item.attr('id'),
                 'data_ordercn': item.attr('data-ordercn'),
