@@ -54,8 +54,7 @@ if __name__ == '__main__':
         # 返回一个生成器, 使用for循环就可以打印出来。循环的每一个节点还是PyQuery类型可以继续CSS选择器选择
         items = doc('#content > div:nth-child(6) > div.touzhu .touzhu_1').items()
         for item in items:
-            matchid = item.attr('id')
-            if matchid == 'match_0':
+            if item.attr('id') == 'match_0' or item.attr('data-end') =='1':
                 continue
             lotterymatch = {
                 'matchid': item.attr('id'),
@@ -98,10 +97,12 @@ if __name__ == '__main__':
             lotterymatches.append(lotterymatch)
             browser.close()
             browser.switch_to.window(browser.window_handles[0])
-        save_to_mongo(lotterymatches)
+
     except Exception as err:
         print("Error:"+str(err))
         print('Browser:'+browser.page_source)
+    else:
+        save_to_mongo(lotterymatches)
     finally:
         browser.quit()
         myclient.close()
