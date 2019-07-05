@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 def repstrstr(instr):
-    return instr.replace('↑', ' ').replace('↓', ' ').strip()
+    return instr.rstrip('↑').rstrip('↓')
 
 
 def save_to_mongo(data):
