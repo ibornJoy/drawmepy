@@ -15,27 +15,23 @@ lotteryindex = lotterysize
 myfont = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simfang.ttf')
 
 
-def onclick(event):
-    global lotteryindex
-    # ugly to fit 3 == forward 2 == backward
-    # toolbar so hard to find the way get the event ???
-    if event.button != 3 and event.button != 2:
-        return False
-    if event.button == 3:
-        lotteryindex = lotteryindex + 1
+# https://matplotlib.org/users/event_handling.html
+def onscroll(event):
+    #print(event)
+    global lotteryindex, lotterysize
+    if event.button == 'up':
+        lotteryindex += 1
         if lotteryindex == lotterysize:
             lotteryindex = 0
-    if event.button == 2:
-        lotteryindex = lotteryindex - 1
-        if lotteryindex < 0:
+    elif event.button == 'down':
+        lotteryindex -= 1
+        if lotteryindex == -1:
             lotteryindex = lotterysize - 1
     event.canvas.figure.clear()
     # event.canvas.figure.gca().plot()
     drawonelottery(lotteryindex)
     # use canvas draw to update the picture
     event.canvas.draw()
-    # return value really need???
-    return True
 
 
 def drawonelottery(index):
@@ -69,7 +65,7 @@ if __name__ == '__main__':
     lotterysize = len(lotterymatches)
     myclient.close()
     fig = plt.figure('Football Match', figsize=(12, 4))
-    fig.canvas.mpl_connect('button_press_event', onclick)
+    fig.canvas.mpl_connect('scroll_event', onscroll)
     drawonelottery(0)
     # plt.show() create canvas and cause too many memory cause
     # error "maximum recursion depth exceeded in comparison"
