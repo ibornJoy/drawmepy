@@ -80,7 +80,9 @@ if __name__ == '__main__':
                 (By.CSS_SELECTOR, 'table')))
 
             doc24 = pq(browser.page_source)
-            items24 = doc24('body > div.wrap > table > tbody  .sjbg01').items()
+            items24 = doc24(' table > tbody >tr').items()
+            next(items24)
+            next(items24)
             ratio24time,ratio24zhu,ratio24fu,ratio24ping = list(),list(),list(),list()
             for item in items24:
                 date24 = item.find('td:nth-child(1)').text().replace('(初)', '')
