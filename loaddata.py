@@ -12,6 +12,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+WEEKCN =("周一","周二","周三","周四","周五","周六","周日")
+
 def repstrstr(instr):
     return instr.rstrip('↑').rstrip('↓')
 
@@ -23,6 +25,7 @@ def save_to_mongo(data):
     """
     if len(data) == 0 :
         print('save_to_mongo no data input')
+        return
     try:
         if len(data) == 1:
             mycol.insert_one(data)
@@ -52,7 +55,8 @@ if __name__ == '__main__':
         # print(browser.title)
         doc = pq(browser.page_source)
         # 返回一个生成器, 使用for循环就可以打印出来。循环的每一个节点还是PyQuery类型可以继续CSS选择器选择
-        items = doc('#content > div:nth-child(6) > div.touzhu .touzhu_1').items()
+        selectstr = '.touzhu_1[data-ordercn^={}]'.format(WEEKCN[datetime.datetime.now().weekday()])
+        items = doc(selectstr).items()
         for item in items:
             if item.attr('id') == 'match_0' or item.attr('data-end') =='1':
                 continue
