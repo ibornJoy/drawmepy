@@ -82,7 +82,18 @@ if __name__ == '__main__':
             wait = WebDriverWait(browser, 600)
             wait.until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, 'table')))
-
+            
+             #way to waste time to get the whole data
+            doc24str = browser.page_source
+            n = 1
+            while n < 1988316 :
+                time.sleep(1)
+                doc24strnew = browser.page_source
+                if  doc24strnew == doc24str :
+                    break
+                doc24str = doc24strnew
+                n+=n
+            
             doc24 = pq(browser.page_source)
             items24 = doc24(' table > tbody >tr').items()
             next(items24)
