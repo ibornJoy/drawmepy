@@ -6,6 +6,7 @@
 """
 import pymongo
 import datetime
+import time
 from pyquery import PyQuery as pq
 from selenium import webdriver
 from selenium.webdriver.common.by import By
